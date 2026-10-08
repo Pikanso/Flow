@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Flow</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<main>
+<div class="grid"><section class="player-panel">
+<div class="video-wrap" id="stage">
+<video id="video" playsinline></video>
+<div id="empty" class="empty"><div class="empty-play">▶</div><b>Flow</b><p>从一段喜欢的视频开始</p><button id="openImport" class="primary">导入视频 / 生成字幕</button></div>
+<div class="player-heading player-chrome"><div><span class="now-label">正在学习</span><span id="filename">等待导入视频</span></div><div class="stage-actions"><button id="settingsButton" class="icon-button" aria-label="设置" title="设置"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m9 3-.6 2.3-2 .9-2.1-.6-2 3.4 1.6 1.7v2.6L2.3 15l2 3.4 2.1-.6 2 .9L9 21h4l.6-2.3 2-.9 2.1.6 2-3.4-1.6-1.7v-2.6l1.6-1.7-2-3.4-2.1.6-2-.9L13 3Z"/><circle cx="11" cy="12" r="3"/></svg></button><button id="fullscreen" class="icon-button" aria-label="全屏" title="全屏">⛶</button></div></div>
+<div class="player-controls player-chrome">
+<div class="seek-row"><input id="timeline" aria-label="视频进度" type="range" min="0" max="1" step="0.01" value="0" disabled><span id="timecode">00:00 / 00:00</span></div>
+<div class="media-toolbar"><button id="mediaToggle" class="icon-button" aria-label="播放" title="播放 / 暂停（空格）" disabled>▶</button><label class="media-speed" for="mediaRate">倍速<select id="mediaRate" aria-label="播放倍速"><option value="0.5">0.5×</option><option value="0.6">0.6×</option><option value="0.75">0.75×</option><option value="0.85">0.85×</option><option value="1" selected>1.0×</option><option value="1.1">1.1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2.0×</option></select></label></div>
+</div>
+<dialog id="settingsDialog" class="settings-dialog" aria-labelledby="settingsTitle"><div class="settings-heading"><h2 id="settingsTitle">Flow · 导入与设置</h2><button id="closeSettings" aria-label="关闭设置">×</button></div><div class="settings-body">
+<section class="import-section"><h3>视频与字幕</h3><div class="top-actions"><label class="file primary">＋ 导入视频<input id="videoFile" type="file" accept="video/*,audio/*"></label><label class="file secondary">导入已有字幕<input id="subtitleFile" type="file" accept=".srt,.vtt,.json"></label></div><div id="importFilename" class="import-filename">尚未选择视频</div><div class="recognition-row"><button id="auto" class="recognize" disabled><span>✦</span> 生成英文字幕 / 分句</button><div id="recognitionProgress" class="recognition-progress" hidden><div class="progress-heading"><span id="progressLabel">准备识别</span><span id="progressPercent"></span></div><progress id="progressBar" max="100" aria-label="字幕生成进度"></progress></div><div id="status" class="status" role="status">先导入视频，再生成字幕；有字幕文件也可以直接导入。</div><button id="finishImport" disabled>返回播放器</button></div></section>
+<div class="practice-bar"><div class="practice-title"><span class="red-dot"></span> 播放与逐句练习</div><label class="check-label"><input id="loop" type="checkbox" checked> 循环本句</label><div class="setting"><label for="rate">语速</label><select id="rate"><option value="0.5">0.5×</option><option value="0.6">0.6×</option><option value="0.75">0.75×</option><option value="0.85">0.85×</option><option value="1" selected>1.0×</option><option value="1.1">1.1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2.0×</option></select></div><div class="setting"><label for="gap">练习留白</label><select id="gap"><option value="0">无</option><option value="2">2 秒</option><option value="4" selected>4 秒</option><option value="6">6 秒</option><option value="sentence">与本句等长</option></select></div><label class="check-label"><input id="hide" type="checkbox"> 隐藏字幕</label></div>
+<div class="volume-setting"><label for="volume">音量</label><input id="volume" type="range" min="0" max="1" step="0.05" value="1"><button id="mute" class="icon-button" aria-label="静音" title="静音">♪</button></div>
+<details class="editor"><summary>调整当前句 / 手动分句 <span>修正时间与文字</span></summary><div class="editor-body"><textarea id="editText" placeholder="当前句英文"></textarea><div class="edit"><label>起点（秒）<input id="start" type="number" min="0" step="0.01"></label><button id="markStart">取当前起点</button><label>终点（秒）<input id="end" type="number" min="0" step="0.01"></label><button id="markEnd">取当前终点</button><button id="save" class="primary">保存本句</button><button id="add">添加一句</button><button id="split">在播放位置拆句</button><button id="merge">合并下一句</button><button id="delete">删除本句</button></div><p class="hint">将进度条移到句子内部即可拆句；拆分后请分别修改文字。</p></div></details>
+</div></dialog></div>
+<div id="caption" class="caption" aria-live="polite" aria-atomic="true"></div>
+<div class="transport sentence-transport"><button id="prev" title="上一句（←）">← 上一句</button><button id="play" class="play-button">↻ 重播</button><button id="next" title="下一句（→）">下一句 →</button></div>
+</section>
+<aside class="playlist"><div class="playlist-heading"><div><h2>句子清单 <span id="count">0 句</span></h2></div><button id="export" class="export-button">导出字幕 ↗</button></div><div id="list" class="list"></div></aside>
+</div>
+</main><script src="app.js"></script><script src="player.js"></script>
+</body></html>

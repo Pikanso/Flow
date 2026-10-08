@@ -1,0 +1,15 @@
+1
+00:00:00,000 --> 00:00:00,400
+Hello.
+
+2
+00:00:01,160 --> 00:00:03,220
+I want to practice English every day.
+
+3
+00:00:04,100 --> 00:00:06,700
+Listen to one sentence, and then say it yourself.
+
+4
+00:00:07,860 --> 00:00:10,480
+You can slow down the video and repeat each sentence.

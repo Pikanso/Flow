@@ -1,0 +1,17 @@
+.venv/
+.models/
+__pycache__/
+.server.*.log
+.test-job-id
+build/
+dist/
+*.spec
+desktop-*-test.json
+.desktop-build.log
+Videos/
+preview*
+tests/make_real_preview.py
+.publish/
+.env
+.env.*
+*.log

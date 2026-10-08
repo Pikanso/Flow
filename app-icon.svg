@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+<rect width="256" height="256" fill="#08080a"/>
+<defs><clipPath id="edge"><ellipse cx="128" cy="128" rx="76" ry="78"/></clipPath></defs>
+<ellipse cx="128" cy="128" rx="76" ry="78" fill="#e50914"/>
+<ellipse cx="128" cy="128" rx="49" ry="51" fill="#08080a"/>
+<rect x="128" y="136" width="90" height="25" fill="#08080a"/>
+<rect y="114" width="256" height="22" fill="#e50914" clip-path="url(#edge)"/>
+</svg>
