@@ -4,6 +4,8 @@ Flow 是 Windows 英文视频逐句练习工具：导入本地视频，离线识
 
 **[下载 Windows 版](https://github.com/Pikanso/Flow/releases/latest)** · [源码](https://github.com/Pikanso/Flow)
 
+![Flow 软件界面：视频播放、当前句字幕与逐句练习清单](docs/images/flow-interface.png)
+
 在 Release 下载 `Flow-v1.0.0-windows-x64.zip`，解压后双击 `Flow.exe`。发布包包含英文识别模型、使用说明和第三方许可文件；不包含个人视频、预览素材或日志。
 
 ## Windows 桌面版
